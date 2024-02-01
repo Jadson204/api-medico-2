@@ -28,7 +28,8 @@ public class SecurityConfigurations {
                 .and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
-                .and().build();
+                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
 

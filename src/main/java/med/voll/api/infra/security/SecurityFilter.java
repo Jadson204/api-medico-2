@@ -31,10 +31,8 @@ public class SecurityFilter extends OncePerRequestFilter {
             var usuario = repository.findByLogin(subject);
 
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            System.out.println(subject);
         }
 
 
@@ -44,7 +42,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private String recuperarToken(HttpServletRequest request) {
         var authorizationHeader = request.getHeader("Authorization");
         if(authorizationHeader != null) {
-            return  authorizationHeader.replace("Bearer ", "");
+            return  authorizationHeader.replace("Bearer ", "").trim();
         }
 
         return null;
