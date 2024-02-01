@@ -1,0 +1,11 @@
+CREATE TABLE consultas (
+
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    medico_id BIGINT NOT NULL,
+    paciente_id BIGINT NOT NULL,
+    data DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT FK_CONSULTAS_MEDICO_ID FOREIGN KEY (medico_id) REFERENCES medicos(id),
+    CONSTRAINT FK_CONSULTAS_PACIENTE_ID FOREIGN KEY (paciente_id) REFERENCES pacientes(id)
+
+);
